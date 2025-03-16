@@ -65,10 +65,10 @@ exports.claimCoupon = async (req, res) => {
 
     // Set a cookie to track this user’s claim
     res.cookie("sessionId", userSession, {
-      httpOnly: false,
-      secure: false, // Corrected for localhost HTTP
-      sameSite: 'lax', // Or 'strict'
-      maxAge: 24 * 60 * 60 * 1000,
+      httpOnly: true,  // ✅ Prevents JavaScript from accessing the cookie
+      secure: process.env.NODE_ENV === "production", // ✅ Ensures secure cookies only on HTTPS
+      sameSite: "strict", // ✅ Protects against CSRF attacks
+      maxAge: 24 * 60 * 60 * 1000, // 1 day
     });
 
     res.json({ message: "Coupon claimed successfully!", coupon });

@@ -13,8 +13,8 @@ This is a full-stack web application that distributes coupons to guest users in 
 
 1. **Clone the Repository**
    ```sh
-   git clone https://github.com/your-repo.git
-   cd your-repo
+   git clone https://github.com/TabrejQuadir/Round-Robin.git
+   cd Round-Robin
 
 2. **Install Dependencies**
    ```sh
@@ -44,12 +44,7 @@ This is a full-stack web application that distributes coupons to guest users in 
 - ✅ Prevent abuse using IP & cookie tracking
 - ✅ Admin panel to add, edit, and view coupon history
 - ✅ JWT authentication for admins
-- ✅ Real-time updates on coupon claims
-
-🔐 Admin Panel
-To access the admin panel, log in with:
-📧 Email: admin@gmail.com
-🔑 Password: admin
+- ✅ Real-time updates on coupon claims   
 
 ## 🛠️ Implementation Details
 
@@ -72,5 +67,10 @@ To access the admin panel, log in with:
 ## 📝 License
 MIT License
 
+🔐 Admin Panel
+To access the admin panel, log in with:
+📧 Email: admin@gmail.com
+🔑 Password: admin
+
 🌍 Live Deployment
-🔗 URL: https://your-live-app.com
+🔗 URL: https://roundrobin-y25v.onrender.com
