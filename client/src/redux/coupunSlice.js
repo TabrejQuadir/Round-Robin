@@ -2,8 +2,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 // Backend API URL
-const API_URL = "http://localhost:5000/api/coupons";
-const CLAIMED_COUPONS_URL = "http://localhost:5000/api/user-coupons/claimedcoupuns"; // New endpoint
+const API_URL = "https://round-robin-8k6e.onrender.com/api/coupons";
+const CLAIMED_COUPONS_URL = "https://round-robin-8k6e.onrender.com/api/user-coupons/claimedcoupuns"; // New endpoint
 
 // Fetch Coupons from Backend
 export const fetchCoupons = createAsyncThunk("coupon/fetchCoupons", async (_, { rejectWithValue }) => {
@@ -60,7 +60,7 @@ export const deleteCoupon = createAsyncThunk("coupon/deleteCoupon", async (id, {
 // Claim a Coupon (User Side)
 export const claimCoupon = createAsyncThunk("coupon/claimCoupon", async ({ couponId, sessionId }, { rejectWithValue }) => {
   try {
-    const response = await axios.post("http://localhost:5000/api/user-coupons/claim", { couponId, sessionId }, {
+    const response = await axios.post("https://round-robin-8k6e.onrender.com/api/user-coupons/claim", { couponId, sessionId }, {
       withCredentials: true, // Send cookies for session tracking
     });
     return response.data;
