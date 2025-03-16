@@ -38,12 +38,17 @@ const Coupons = () => {
 
     const handleClaim = async (couponId) => {
         try {
-            await dispatch(claimCoupon({ couponId, sessionId })).unwrap();
-            dispatch(fetchCoupons());
+            const result = await dispatch(claimCoupon({ couponId, sessionId })).unwrap()
+            setMessage(result.message) // ✅ Update success message
+
+            dispatch(fetchCoupons()); // ✅ Refetch to update UI
         } catch (error) {
             console.error("Error claiming coupon:", error);
         }
-    };
+
+        // ✅ Clear success message after 3 seconds
+        setTimeout(() => setMessage(""), 3000);
+    };  
 
     return (
         <div className="min-h-screen bg-black mt-20 flex flex-col items-center justify-center p-8 text-white">
@@ -94,14 +99,14 @@ const Coupons = () => {
 
                             <button
                                 onClick={() => handleClaim(coupon._id)}
-                                disabled={coupon.claimedBy?.some(claim => claim.user === sessionId)}
+                                disabled={coupon?.claimedBy?.some(claim => claim.user === sessionId)}
                                 className={`mt-2 px-6 py-2 text-lg font-semibold rounded-xl shadow-md transition-transform 
-        ${coupon.claimedBy?.some(claim => claim.user === sessionId)
+        ${coupon?.claimedBy?.some(claim => claim.user === sessionId)
                                         ? "bg-gray-600 cursor-not-allowed"
                                         : "bg-gradient-to-r from-yellow-800 to-yellow-900 text-white hover:scale-110 hover:shadow-yellow-800/50"
                                     }`}
                             >
-                                {coupon.claimedBy?.some(claim => claim.user === sessionId) ? "Claimed" : "Claim"}
+                                {coupon?.claimedBy?.some(claim => claim.user === sessionId) ? "Claimed" : "Claim"}
                             </button>
 
                             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-16 h-8 bg-yellow-500 rounded-t-full border border-yellow-800"></div>
